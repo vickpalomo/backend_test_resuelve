@@ -1,0 +1,31 @@
+{
+  "name": "programming_test_resuelve",
+  "version": "1.0.0",
+  "description": "Prueba de Resuelve para aplicar a la vacante de backend developer",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.1"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vickpalomo/backend_test_resuelve.git"
+  },
+  "author": "Vick Palomo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vickpalomo/backend_test_resuelve/issues"
+  },
+  "homepage": "https://github.com/vickpalomo/backend_test_resuelve#readme"
+}
