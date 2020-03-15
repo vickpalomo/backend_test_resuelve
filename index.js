@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser')
 const compression = require('compression')
 const helmet = require('helmet')
-const router = require('./routes/router');
+const router = require('./routes/router')
 const express = require('express')
 const app = express()
 require('dotenv').config()
