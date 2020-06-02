@@ -1,4 +1,7 @@
 const router = require('express').Router()
-const calculateSalary = require('./salary_controller')
+const salary = require('./salary_controller')
 
-// router.post('/', calculateSalary.calculateSalaryResuelveTeam)
+router.use('/resuelveTeam', salary.calculateSalaryResuelveTeam)
+router.use('/externalTeam', salary.calculateSalaryExternalTeams)
+
+module.exports = router

@@ -17,7 +17,6 @@ app.use(compression())
 app.use(router)
 
 app.listen(process.env.port, function (err) {
-  if (!err) {
-    console.log('Its Alive...')
-  } else console.log(err)
+  if (err) throw err
+  console.log('Its Alive')
 })
