@@ -14,6 +14,7 @@ app.use(helmet())
 
 app.use(compression())
 
+app.use('/documentation', express.static('out'))
 app.use(router)
 
 app.listen(process.env.port, function (err) {
