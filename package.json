@@ -4,6 +4,8 @@
   "description": "Prueba de Resuelve para aplicar a la vacante de backend developer",
   "main": "index.js",
   "dependencies": {
+    "ajv": "^6.12.2",
+    "apidoc": "^0.23.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
