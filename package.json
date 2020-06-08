@@ -18,6 +18,8 @@
     "standard": "^14.3.1"
   },
   "scripts": {
+    "jsdoc": "./node_modules/.bin/jsdoc -c conf.json",
+    "apidoc": "./node_modules/.bin/apidoc -i ./service_salary/ -o ./doc",
     "start": "nodemon index.js",
     "start:prod": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

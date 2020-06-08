@@ -12,4 +12,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm run jsdoc && npm run apidoc
+
+EXPOSE 3001
+
 CMD ["npm", "run", "start:prod"]

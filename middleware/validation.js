@@ -6,7 +6,6 @@ const schema = require('../data/schema')
 *
 * @author Victor Palomo <ing.victorpalomo@gmail.com>
 */
-
 /**
  * @function isEmpty
  * @description Validate if the object sent in the request is empty
