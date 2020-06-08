@@ -130,6 +130,14 @@ const levelsResuelve = require('../data/level')
     }
   }
 }
+ * @apiSuccess {Object[]} players Players Array
+ * @apiSuccess {String}   players.nombre Player's name
+ * @apiSuccess {String}   players.nivel Player level
+ * @apiSuccess {Number}   players.goles Goals Scored By Player
+ * @apiSuccess {Number}   players.sueldo Player Base Salary
+ * @apiSuccess {Number}   players.bono Player bonus
+ * @apiSuccess {Null}     players.sueldo_completo Player's full salary (Data to be calculated by the api)
+ * @apiSuccess {String}   players.equipo Team
  *@apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *    [
@@ -170,6 +178,26 @@ const levelsResuelve = require('../data/level')
             "equipo": "rojo"
         }
       ]
+ * @apiError {Object} JsonEmpty No data to process
+ * @apiErrorExample {json} JSONEmpty:
+ *  HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "No data to process"
+ *     }
+ * @apiError {Object} SchemaErrors The errors related to the structure of the json are concentrated, as well as the type of data that must be sent in each key. See SchemaErrors tab.
+ * @apiErrorExample {Json} SchemaErrors:
+ *  HTTP/1.1 400 Bad Request
+ *      {
+          "field": "goles",
+          "message": "should be >= 0"
+ *       }
+ * @apiError {Object} UnknowLevel This error occurs when the player level is not in the levels json
+ * @apiErrorExample {json} UnknowLevel:
+ *  HTTP/1.1 400 Bad Request
+ *    {
+        "field": "nivel",
+        "message": "unknown levels were found"
+      }
  */
 const calculateSalary = (req, res) => {
   const levels = req.body.levels || levelsResuelve
