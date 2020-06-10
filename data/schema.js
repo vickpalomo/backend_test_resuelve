@@ -6,6 +6,7 @@ const schema = {
       type: 'array',
       items: {
         type: 'object',
+        required: ['nombre', 'nivel', 'goles', 'sueldo', 'bono', 'sueldo_completo', 'equipo'],
         properties: {
           nombre: { type: 'string', minimum: 1 },
           nivel: { type: 'string', minimum: 1 },
