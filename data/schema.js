@@ -4,6 +4,7 @@ const schema = {
   properties: {
     players: {
       type: 'array',
+      minItems: 1,
       items: {
         type: 'object',
         required: ['nombre', 'nivel', 'goles', 'sueldo', 'bono', 'sueldo_completo', 'equipo'],

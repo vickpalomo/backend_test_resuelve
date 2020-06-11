@@ -1,6 +1,6 @@
-const lib = require('../lib/lib')
+const lib = require('../../lib/lib')
 
-const levels = require('../data/level')
+const levels = require('../../data/level')
 
 const players = [
   {
@@ -145,7 +145,7 @@ describe('lib.js file', () => {
     describe('when receive a valid array of players', () => {
       it('should calculate the full salary of each player', () => {
         expect(lib.getTotalSalary(playersWithReplacedLevels, totalGoalAndPercentageTeam)).toEqual(expectJsonResponse)
-      });
-    });
+      })
+    })
   })
 })

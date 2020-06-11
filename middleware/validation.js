@@ -13,7 +13,12 @@ const schema = require('../data/schema')
  * @returns {Boolean}
  */
 const isEmpty = (obj) => {
-  return (Object.keys(obj).length === 0)
+  const errors = {}
+  if (Object.keys(obj).length === 0) {
+    errors.error = 'invalid request'
+    errors.message = 'No data to process'
+  }
+  return errors
 }
 
 /**
@@ -27,8 +32,8 @@ const validateSchemaPlayer = (players) => {
   const valid = ajv.validate(schema, players)
   const errors = {}
   if (!valid) {
-    errors.field = ajv.errors[0].dataPath.split('.')[2] || 'players'
-    errors.message = ajv.errors[0].message
+    errors.error = 'invalid schema'
+    errors.message = (ajv.errors[0].dataPath.split('.')[2] || 'players') + ' ' + ajv.errors[0].message
   }
   return errors
 }
@@ -46,7 +51,7 @@ const validateSchemaLevels = (players, levels) => {
     return !levels[player.equipo][player.nivel]
   })
   if (unknowLevels.length !== 0) {
-    errors.field = 'nivel'
+    errors.error = 'invalid level'
     errors.message = 'unknown levels were found'
   }
   return errors

@@ -181,23 +181,32 @@ const levelsResuelve = require('../data/level')
  * @apiError {Object} JsonEmpty No data to process
  * @apiErrorExample {json} JSONEmpty:
  *  HTTP/1.1 400 Bad Request
- *     {
- *       "error": "No data to process"
- *     }
+ *    {
+ *      "error": "invalid request",
+ *      "message": "No data to process"
+ *    }
  * @apiError {Object} SchemaErrors The errors related to the structure of the json are concentrated, as well as the type of data that must be sent in each key. See SchemaErrors tab.
  * @apiErrorExample {Json} SchemaErrors:
  *  HTTP/1.1 400 Bad Request
- *      {
-          "field": "goles",
-          "message": "should be >= 0"
- *       }
+*     {
+        "error": "invalid eschema",
+        "message": "goles should be >= 0"
+*     }
  * @apiError {Object} UnknowLevel This error occurs when the player level is not in the levels json
  * @apiErrorExample {json} UnknowLevel:
  *  HTTP/1.1 400 Bad Request
  *    {
-        "field": "nivel",
+        "error": "invalid level",
         "message": "unknown levels were found"
       }
+ */
+
+/**
+ * @function calculateSalary
+ * @description Calculate the total salary of each player
+ * @param  {Object} req Request Object
+ * @param  {Object} res Response Object
+ * @returns {Array} Array of players with the total salary calculated
  */
 const calculateSalary = (req, res) => {
   const levels = req.body.levels || levelsResuelve
@@ -208,4 +217,6 @@ const calculateSalary = (req, res) => {
   return res.status(200).json(teamDataFullSalary)
 }
 
-module.exports = calculateSalary
+module.exports = {
+  calculateSalary
+}
