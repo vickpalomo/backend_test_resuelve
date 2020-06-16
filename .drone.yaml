@@ -1,5 +1,5 @@
 kind: pipeline
-type: docker  
+type: docker
 name: resuelve
 
 steps:
@@ -7,4 +7,4 @@ steps:
   image: node:10.20.1-alpine3.11
   commands: 
   - npm install
-  - npm runtest
+  - npm run test
