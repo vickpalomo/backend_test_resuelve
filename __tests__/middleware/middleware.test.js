@@ -1,207 +1,52 @@
 const middleware = require('../../middleware/middleware')
+const mock = require('../../__mocks__/mock')
 
-const players = [
-  {
-    nombre: 'Juan Perez',
-    nivel: 'C',
-    goles: 10,
-    sueldo: 50000,
-    bono: 25000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  },
-  {
-    nombre: 'EL Cuauh',
-    nivel: 'Cuauh',
-    goles: 30,
-    sueldo: 100000,
-    bono: 30000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'Cosme Fulanito',
-    nivel: 'A',
-    goles: 7,
-    sueldo: 20000,
-    bono: 10000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'El Rulo',
-    nivel: 'B',
-    goles: 9,
-    sueldo: 30000,
-    bono: 15000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  }
-]
-const levels = {
-  rojo: {
-    A: 5,
-    B: 10,
-    C: 20,
-    Cuauh: 50
-  },
-  azul: {
-    A: 10,
-    B: 4,
-    C: 6,
-    Cuauh: 40
-  }
-}
+describe('middleware must validate that it receives a valid json', () => {
+  it('with an json empty should respond with 400', async () => {
+    const req = mock.mockRequest({})
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(res.status).toHaveBeenCalledWith(400)
+  })
 
-const playersMissingAttribute = [
-  {
-    nivel: 'C',
-    goles: 10,
-    sueldo: 50000,
-    bono: 25000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  },
-  {
-    nombre: 'EL Cuauh',
-    nivel: 'Cuauh',
-    goles: 30,
-    sueldo: 100000,
-    bono: 30000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'Cosme Fulanito',
-    nivel: 'A',
-    goles: 7,
-    sueldo: 20000,
-    bono: 10000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'El Rulo',
-    nivel: 'B',
-    goles: 9,
-    sueldo: 30000,
-    bono: 15000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  }
-]
+  it('with an players empty with an players empty', async () => {
+    const req = mock.mockRequest({ players: {} })
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(res.status).toHaveBeenCalledWith(400)
+  })
 
-const playersUnknowLevel = [
-  {
-    nombre: 'Juan Perez',
-    nivel: 'Z',
-    goles: 10,
-    sueldo: 50000,
-    bono: 25000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  },
-  {
-    nombre: 'EL Cuauh',
-    nivel: 'Cuauh',
-    goles: 30,
-    sueldo: 100000,
-    bono: 30000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'Cosme Fulanito',
-    nivel: 'A',
-    goles: 7,
-    sueldo: 20000,
-    bono: 10000,
-    sueldo_completo: null,
-    equipo: 'azul'
-  },
-  {
-    nombre: 'El Rulo',
-    nivel: 'B',
-    goles: 9,
-    sueldo: 30000,
-    bono: 15000,
-    sueldo_completo: null,
-    equipo: 'rojo'
-  }
-]
+  it('with an levels empty should respond with 400', async () => {
+    const req = mock.mockRequest({ players: mock.players, levels: {} })
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(res.status).toHaveBeenCalledWith(400)
+  })
 
-const mockResponse = () => {
-  const res = {}
-  res.status = jest.fn().mockReturnValue(res)
-  res.json = jest.fn().mockReturnValue(res)
-  return res
-}
+  it('with an invalid schema should respond with 400', async () => {
+    const req = mock.mockRequest({ players: mock.playersMissingAttribute })
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(res.status).toHaveBeenCalledWith(400)
+  })
 
-const mockRequest = (body) => {
-  return {
-    body: body
-  }
-}
+  it('with an unknow level should respond with 404', async () => {
+    const req = mock.mockRequest({ players: mock.playersUnknowLevel })
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(res.status).toHaveBeenCalledWith(400)
+  })
 
-describe('Middleware', () => {
-  describe('#validationsMiddleware', () => {
-    describe('with an json empty', () => {
-      it('should respond with 400', async () => {
-        const req = mockRequest({})
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(res.status).toHaveBeenCalledWith(400)
-      })
-    })
-    describe('with an players json empty', () => {
-      it('should respond with 400', async () => {
-        const req = mockRequest({ players: {} })
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(res.status).toHaveBeenCalledWith(400)
-      })
-    })
-
-    describe('with an levels json empty', () => {
-      it('should respond with 400', async () => {
-        const req = mockRequest({ players: players, levels: {} })
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(res.status).toHaveBeenCalledWith(400)
-      })
-    })
-
-    describe('with an invalid schema', () => {
-      it('should respond with 400', async () => {
-        const req = mockRequest({ players: playersMissingAttribute })
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(res.status).toHaveBeenCalledWith(400)
-      })
-    })
-
-    describe('with an unknow level', () => {
-      it('should respond with 404', async () => {
-        const req = mockRequest({ players: playersUnknowLevel })
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(res.status).toHaveBeenCalledWith(400)
-      })
-    })
-
-    describe('with an json valid', () => {
-      it('should return next', async () => {
-        const req = mockRequest({ players: players, levels: levels })
-        const res = mockResponse()
-        const next = jest.fn()
-        await middleware.validationsMiddleware(req, res, next)
-        expect(next.mock.calls).toEqual([[]])
-      })
-    })
+  it('with an json valid should return next', async () => {
+    const req = mock.mockRequest({ players: mock.players, levels: mock.levels })
+    const res = mock.mockResponse()
+    const next = mock.next
+    await middleware.validationsMiddleware(req, res, next)
+    expect(next.mock.calls).toEqual([[]])
   })
 })
