@@ -18,7 +18,7 @@ app.use('/documentation', express.static('out'))
 app.use('/api-documentation', express.static('doc'))
 app.use(router)
 
-app.listen(process.env.port, function (err) {
+app.listen(3001, function (err) {
   if (err) throw err
   console.log('Its Alive')
 })
