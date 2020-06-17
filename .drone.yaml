@@ -24,4 +24,5 @@ steps:
     password: docker_password
     repo: vickpalomo/resuelve
     tags: latest
+    debug: true
     insecure: true
