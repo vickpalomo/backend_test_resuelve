@@ -16,3 +16,13 @@ steps:
       from_secret: sonar_host
     sonar_token:
       from_secret: sonar_token
+
+- name: publishg
+  image: plugins/docker
+  settings:
+    username: docker_username
+    password: docker_password
+    repo: https://hub.docker.com/repository/docker/vickpalomo/resuelve
+    tags: latest
+    debug: true
+    insecure: true
