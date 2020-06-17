@@ -17,10 +17,11 @@ steps:
     sonar_token:
       from_secret: sonar_token
 
-- name: registry
+- name: publishg
   image: plugins/docker
   settings:
     username: docker_username
     password: docker_password
     repo: vickpalomo/resuelve
     tags: latest
+    insecure: true
