@@ -22,7 +22,7 @@ steps:
   settings:
     username: docker_username
     password: docker_password
-    repo: vickpalomo/resuelve
+    repo: https://hub.docker.com/repository/docker/vickpalomo/resuelve
     tags: latest
     debug: true
     insecure: true
