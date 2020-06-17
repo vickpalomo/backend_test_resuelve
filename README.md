@@ -17,85 +17,77 @@ _Clona el repositorio del proyecto_
 
 * Docker version 19.03.11
 * docker-compose version 1.11.2
+* node ^v10.21.0
+* npm ^6.14.4
 
-### Instalación 🔧
+### Configuración 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_Para ejecutar el proyecto con nodejs_
 
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
+* Instalar dependencias del proyecto
 
 ```
-hasta finalizar
+  npm install
 ```
 
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
+* Levantar el proyecto usando nodemon, este paquete le permitira reiniciar el servidor cada vez que detecte un cambio en los archivos
+```
+  npm run start
+```
+
+### Configuración con Docker 🔧
+
+* Dentro de la carpeta del proyecto ejecute
+```
+  docker-compose up
+```
+
+* El servidor se levanta en el puerto 3001
+```
+  http://localhost:3001
+```
 
 ## Ejecutando las pruebas ⚙️
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
+* Para realizar las pruebas automatizadas, ejecute
 ```
-Da un ejemplo
+  npm run test
 ```
 
-### Y las pruebas de estilo de codificación ⌨️
+## Consultando los endpoints ⚙️
 
-_Explica que verifican estas pruebas y por qué_
+_El proyecto tiene un endpoint que recibe el json con los datos para calcular el sueldo completo de los jugadores_
+
+* Realice un post a la siguiente url
 
 ```
-Da un ejemplo
+  POST http://localhost:3001/salary/calculateSalary
 ```
 
-## Despliegue 📦
+* Puede encontrar el proyecto en:
+```
+  GET http://54.184.109.104/resuelve/salary/calculateSalary
+```
 
-_Agrega notas adicionales sobre como hacer deploy_
+* La documentación del codigo del proyecto la encuentra en:
+```
+  GET http://54.184.109.104/resuelve/documentation/
+```
 
-## Construido con 🛠️
+* La documentación de la API la encuentra en:
+```
+  GET http://54.184.109.104/resuelve/api-documentation/
+```
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+## Construccion CD/CI 🛠️
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+_El proyecto construye una imagen docker, siguiendo un pipeline hecho con drone.io, se conecta aun servidor de sonarqube para hacer analisis de codigo y por ultimo sube la imagen al docker hub para que sea visible para cualquier persona._
 
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+* [Drone](https://docs.drone.io/) - Servidor CI/CD.
+* [Sonarqube](https://docs.sonarqube.org/latest/) - Servidor para analisis de Codigo y Seguridad.
+* [Docker Hub](https://hub.docker.com/) - Usado como repositorio de Imagenes
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+* **Victor Manuel Palomo Yama** - *Backend Developer* - [vickpalomo](http://github.com/vickpalomo)
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
