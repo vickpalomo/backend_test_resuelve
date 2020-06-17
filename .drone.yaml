@@ -2,32 +2,12 @@ kind: pipeline
 type: docker
 name: resuelve
 
-# steps:
-# - name: test
-#   image: node:10.20.1-alpine3.11
-#   commands: 
-#   - npm install
-#   - npm run test
-local Pipeline(name, image) = {
-  kind: "pipeline",
-  name: name,
-  steps: [
-    {
-      name: "test",
-      image: image,
-      commands: [
-        "npm install",
-        "npm test"
-      ]
-    }
-  ]
-};
-
-[
-  Pipeline("node10", "node:10.20.1-alpine3.11"),
-  Pipeline("node12", "node:12.18.0-alpine3.12"),
-  Pipeline("node14", "node:14.4.0-alpine3.12"),
-]
+steps:
+- name: test
+  image: node:10.20.1-alpine3.11
+  commands: 
+  - npm install
+  - npm run test
 
 - name: code-analysis
   image: aosapps/drone-sonar-plugin
