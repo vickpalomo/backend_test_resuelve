@@ -22,6 +22,6 @@ steps:
   settings:
     username: docker_username
     password: docker_password
-    repo: docker.io/vickpalomo/resuelve
-    tags: latest
+    repo: vickpalomo/resuelve
+    tags: 1.0.0
     debug: true
