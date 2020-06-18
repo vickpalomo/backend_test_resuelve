@@ -64,9 +64,9 @@ _El proyecto tiene un endpoint que recibe el json con los datos para calcular el
   POST http://localhost:3001/salary/calculateSalary
 ```
 
-* Puede encontrar el proyecto en:
+* El proyecto esta hosteado en un vps de aws, puede hacer peticiones a la siguiente url:
 ```
-  GET http://54.184.109.104/resuelve/salary/calculateSalary
+  POST http://54.184.109.104/resuelve/salary/calculateSalary
 ```
 
 * La documentación del codigo del proyecto la encuentra en:
